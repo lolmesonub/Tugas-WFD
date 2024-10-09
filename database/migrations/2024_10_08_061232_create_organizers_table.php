@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('x_link');
             $table->string('website_link');
             $table->integer('active')->default(1);
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
             $table->timestamps();
         });
     }

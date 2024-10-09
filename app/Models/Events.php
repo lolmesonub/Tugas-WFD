@@ -2,21 +2,24 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class Events extends Pivot
 {
     use HasFactory;
 
-    public function organizer(): BelongsToMany
+    protected $table = "events";
+
+    public function organizer(): BelongsTo
     {
-        return $this->belongsToMany(Organizers::class);
+        return $this->belongsTo(Organizers::class);
     }
 
-    public function event_category(): BelongsToMany
+    public function event_category(): BelongsTo
     {
-        return $this->belongsToMany(Event_Categories::class);
+        return $this->belongsTo(Event_Categories::class);
     }
 }

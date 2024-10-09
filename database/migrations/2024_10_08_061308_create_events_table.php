@@ -20,15 +20,15 @@ return new class extends Migration
             $table->string('description');
             $table->string('booking_url')->nullable();
             $table->string('tags');
+            $table->bigInteger('organizer_id')->unsigned();
+            $table->bigInteger('event_category_id')->unsigned();
             $table->foreign('organizer_id')
                   ->references('id')
-                  ->on('organizer')->onDelete('cascade');
-            $table->foreign('event_organizer_id')
+                  ->on('organizers')->onDelete('cascade');
+            $table->foreign('event_category_id')
                   ->references('id')
-                  ->references('event_organizer')->onDelete('cascade');
+                  ->on('event_categories')->onDelete('cascade');
             $table->integer('active')->default(1);
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
             $table->timestamps();
         });
     }

@@ -6,6 +6,10 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Facades\Date;
+use Ramsey\Uuid\Type\Integer;
+
+use function Laravel\Prompts\text;
 
 class EventsSeeder extends Seeder
 {
@@ -16,27 +20,23 @@ class EventsSeeder extends Seeder
     {
         for($i = 1; $i<=6; $i++)
         {
+            $title = fake()->text(7); // generate the title first
+
             DB::table('events')->insert([
                 'id' => $i,
-                'date' => Carbon::now()->toFormattedDayDateString(),
-                'start_time' => Carbon::now()->toTimeString(),
-                'description' => fake() -> text(25),
+                'title' => $title,
+                'venue' => fake()->city(),
+                'date' => fake()->date(),
+                'start_time' => fake()->time(),
+                'description' => fake()->text(200),
+                'booking_url' => $title . '.com',
+                'tags' => fake()->text(5),
+                'organizer_id' => rand(1, 5),
+                'event_category_id' => rand(1, 3),
+                'active' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]);
         }
     }
 }
-// id looping
-// title isi manual
-// venue isi manual
-// date random
-// start_time random
-// description random
-// booking_url -> nullable isi manual
-// tags isi manual
-// organizer_id -> FK ke table organizers
-// event_category_id -> FK ke table event_categories
-// active -> default 1, kalau 1 berarti data masih aktif tidak dihapus
-// created_at random
-// updated_at random
