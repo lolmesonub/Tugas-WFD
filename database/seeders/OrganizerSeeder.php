@@ -19,7 +19,7 @@ class OrganizerSeeder extends Seeder
             DB::table('organizers')->insert([
                 'id' => $i,
                 'name' => $name,
-                'description' => fake()->text(25),
+                'description' => fake()->paragraph(1),
                 'facebook_link' => 'https://facebook.com/' . $slug,
                 'x_link' => 'https://x.com/' . $slug,
                 'website_link' => 'https://www.' . $slug . '.com',

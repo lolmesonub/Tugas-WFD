@@ -3,13 +3,14 @@
 namespace Database\Seeders;
 
 use Carbon\Carbon;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Str;
 use Ramsey\Uuid\Type\Integer;
-
+use Illuminate\Database\Seeder;
 use function Laravel\Prompts\text;
+use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Date;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class EventsSeeder extends Seeder
 {
@@ -20,7 +21,8 @@ class EventsSeeder extends Seeder
     {
         for($i = 1; $i<=6; $i++)
         {
-            $title = fake()->text(7); // generate the title first
+            $title = fake()->text(7);
+            $slug = Str::slug($title); // generate the title first
 
             DB::table('events')->insert([
                 'id' => $i,
@@ -28,8 +30,8 @@ class EventsSeeder extends Seeder
                 'venue' => fake()->city(),
                 'date' => fake()->date(),
                 'start_time' => fake()->time(),
-                'description' => fake()->text(200),
-                'booking_url' => $title . '.com',
+                'description' => fake()->paragraph(1),
+                'booking_url' => $slug . '.com',
                 'tags' => fake()->text(5),
                 'organizer_id' => rand(1, 5),
                 'event_category_id' => rand(1, 3),

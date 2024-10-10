@@ -5,7 +5,7 @@
         <h2 class="text-2xl">{{ $event->event_category->name }}</h2>
         <h1 class="text-3xl font-bold mb-3">{{ $event->title }}</h1>
         <img class="rounded-t-lg" src="https://i.pinimg.com/736x/3b/75/b3/3b75b3a21cb4fbca4b8f3987227af80a.jpg" alt="" />
-        <div class="grid-cols-2">
+        <div class="grid grid-cols-2 gap-5">
             <div>
                 <h3 class="font-bold text-lg">Organizer</h3>
                 <p>{{ $event->organizer->name }}</p>

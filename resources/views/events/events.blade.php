@@ -24,7 +24,7 @@
                             <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Master Event Category</a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Master Organizer</a>
+                            <a href="organizers" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Master Organizer</a>
                         </li>
                         <li>
                             <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Master Event</a>
@@ -42,7 +42,7 @@
 
     <div class="container p-5">
         <h1 class="font-bold mb-3">Events in Surabaya</h1>
-        <div class="flex flex-warp -mx-3 grid-cols-3">
+        <div class="grid grid-cols-3 gap-10">
             @foreach ($events as $event )
             <div class="px-3">
                 <a href="{{ route('events.show', $event->id) }}">

@@ -10,7 +10,7 @@ class OrganizersController extends Controller
     public function index()
     {
         $organizers = Organizers::all();
-        return view("organizers/listOrganizers", [
+        return view("organizers/organizers", [
             "organizers" => $organizers
         ]);
     }
@@ -19,7 +19,10 @@ class OrganizersController extends Controller
      */
     public function create()
     {
-        //
+        $organizers = Organizers::all();
+        return view("organizers/createOrganizers", [
+            'organizers' => $organizers,
+        ]);
     }
 
     /**
@@ -36,7 +39,7 @@ class OrganizersController extends Controller
     public function show(string $id)
     {
         $organizers = Organizers::query()->where('id', $id)->firstOrFail();
-        return view("organizers/listOrganizers", [
+        return view("organizers/detailOrganizers", [
             'organizers' => $organizers,
         ]);
     }
@@ -46,7 +49,10 @@ class OrganizersController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $organizers = Organizers::query()->where('id', $id)->firstOrFail();
+        return view("organizers/createOrganizers", [
+            'organizers' => $organizers,
+        ]);
     }
 
     /**

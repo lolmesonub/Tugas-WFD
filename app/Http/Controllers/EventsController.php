@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Events;
-use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 
 class EventsController extends Controller
