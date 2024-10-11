@@ -1,6 +1,7 @@
 @extends("base")
 
 @section("content")
+@extends("../navbar")
     <div class="p-5">
         <h2 class="text-3xl mb-3 font-bold">{{ $organizers->name }}</h2>
         <div class="flex space-x-4 mb-10">

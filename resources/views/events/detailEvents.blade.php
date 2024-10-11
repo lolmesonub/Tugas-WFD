@@ -1,6 +1,7 @@
 @extends("base")
 
 @section("content")
+@extends("../navbar")
     <div class="p-5">
         <h2 class="text-2xl">{{ $event->event_category->name }}</h2>
         <h1 class="text-3xl font-bold mb-3">{{ $event->title }}</h1>
