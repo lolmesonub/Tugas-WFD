@@ -18,30 +18,40 @@
             </div>
 
             <div>
+                <p class="font-bold text-lg mb-1">{{ $events->start_time }}</p>
+                <input type="time" name="start_time" class="outline outline-1 w-full p-2" required>
+            </div>
+
+            <div>
                 <p class="font-bold text-lg mb-1">{{ $events->venue }}</p>
-                <input type="text" name="venue" class="outline outline-1 w-full p-2" required placeholder="X Username">
+                <input type="text" name="venue" class="outline outline-1 w-full p-2" required placeholder="Venue">
             </div>
 
             <div>
                 <p class="font-bold text-lg mb-1">{{ $events->organizer->name }}</p>
                 <select name="organizer_id" class="outline outline-1 w-full p-2" required placeholder="X Username">
                     <option value="" selected disabled>Select Organizer...</option>
-                    @foreach ($events as $event)
+                    @foreach ($organizers as $organizer)
                     {
-                        <option value="{{ $event->organizer_id }}">{{ $event->organizer->name }}</option>
+                        <option value="{{ $organizer->id }}">{{ $organizer->name }}</option>
                     }
                     @endforeach
                 </select>
             </div>
 
             <div>
+                <p class="font-bold text-lg mb-1">{{ $events->booking_url }}</p>
+                <input type="text" name="booking_url" class="outline outline-1 w-full p-2" required placeholder="Booking URL">
+            </div>
+
+            <div>
                 <p class="font-bold text-lg mb-1">{{ $events->description }}</p>
-                <input type="text" name="description" class="outline outline-1 w-full p-2" required placeholder="Website Name">
+                <input type="text" name="description" class="outline outline-1 w-full p-2" required placeholder="Description">
             </div>
 
             <div>
                 <p class="font-bold text-lg mb-1">{{ $events->tags }}</p>
-                <input type="text" name="tags" class="outline outline-1 w-full p-2 mb-5 resize" required placeholder="About">
+                <input type="text" name="tags" class="outline outline-1 w-full p-2 mb-5 resize" required placeholder="Tags">
             </div>
 
             <button type="submit" class="text-white bg-gray-400 hover:bg-gray-500 outline outline-black focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5">

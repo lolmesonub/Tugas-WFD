@@ -27,19 +27,19 @@
                     <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y rounded-lg shadow w-44 border-2 border-black">
                         <ul class="py-2 text-sm text-black" aria-labelledby="dropdownLargeButton">
                         <li>
-                            <a href="event_categories" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-black">Master Event Category</a>
+                            <a href="{{ route('event_categories.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-black">Master Event Category</a>
                         </li>
                         <li>
-                            <a href="organizers" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-black">Master Organizer</a>
+                            <a href="{{ route('organizers.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-black">Master Organizer</a>
                         </li>
                         <li>
-                            <a href="master_events" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-black">Master Event</a>
+                            <a href="{{ route('master_events.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-black">Master Event</a>
                         </li>
                         </ul>
                     </div>
                 </li>
                 <li>
-                <a href="events" class="block py-2 px-3 text-black md:p-0" aria-current="page">Events</a>
+                <a href="{{ route('events.index') }}" class="block py-2 px-3 text-black md:p-0" aria-current="page">Events</a>
                 </li>
             </ul>
             </div>

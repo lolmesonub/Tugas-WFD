@@ -18,6 +18,11 @@
             </div>
 
             <div>
+                <p class="font-bold text-lg mb-1">Start Time</p>
+                <input type="time" name="start_time" class="outline outline-1 w-full p-2" required placeholder="Start Time">
+            </div>
+
+            <div>
                 <p class="font-bold text-lg mb-1">Location</p>
                 <input type="text" name="venue" class="outline outline-1 w-full p-2" required placeholder="Location">
             </div>
@@ -26,9 +31,9 @@
                 <p class="font-bold text-lg mb-1">Organizer</p>
                 <select name="organizer_id" class="outline outline-1 w-full p-2" required placeholder="X Username">
                     <option value="" selected disabled>Select Organizer...</option>
-                    @foreach ($events as $event)
+                    @foreach ($organizers as $organizer)
                     {
-                        <option value="{{ $events->organizer_id }}">{{ $events->organizer->name }}</option>
+                        <option value="{{ $organizer->id }}">{{ $organizer->name }}</option>
                     }
                     @endforeach
                 </select>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Events;
+use App\Models\Organizers;
 use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 
@@ -21,8 +22,10 @@ class master_events extends Controller
     public function create()
     {
         $events = Events::all();
+        $organizers = Organizers::all();
         return view("master_events/createMaster_events", [
             'events' => $events,
+            'organizers' => $organizers,
         ]);
     }
 
@@ -34,25 +37,29 @@ class master_events extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'date' => 'required|date',
+            'start_time' => 'required|date_format:H:i',
             'venue' => 'required|string|max:255',
             'organizer_id' => 'required|exists:organizers,id', // Assuming organizer id is passed
-            'booking_url' => 'required|url|max:255',
+            'booking_url' => 'required|max:255',
             'description' => 'required|string',
             'tags' => 'required|string',
         ]);
+        $bookingurl = 'https://www.' . $validatedData['booking_url'] . '.com';
 
-        // // Create new organizer
-        // $events = new Events();
-        // $events->title = $validatedData['title'];
-        // $events->date = $validatedData['date'];
-        // $events->venue = $validatedData['venue'];
-        // $events->organizer_id = $validatedData['organizer_id'];
-        // $events->booking_url = $validatedData['booking_url'];
-        // $events->description = $validatedData['description'];
-        // $events->tags = $validatedData['tags'];
-        // $events->save();
+        // Create new organizer
+        $events = new Events();
+        $events->title = $validatedData['title'];
+        $events->date = $validatedData['date'];
+        $events->start_time = $validatedData['start_time'];
+        $events->venue = $validatedData['venue'];
+        $events->organizer_id = $validatedData['organizer_id'];
+        $events->booking_url = $bookingurl;
+        $events->description = $validatedData['description'];
+        $events->tags = $validatedData['tags'];
+        $events->event_category_id = 1;
+        $events->save();
 
-        Events::create($validatedData);
+        // Events::create($validatedData);
 
         // Redirect or return response
         return redirect()->route('master_events.index');
@@ -75,8 +82,10 @@ class master_events extends Controller
     public function edit(string $id)
     {
         $events = Events::query()->where('id', $id)->firstOrFail();
+        $oraganizers = Organizers::all();
         return view("master_events/editMaster_events", [
             'events' => $events,
+            'organizers' => $oraganizers,
         ]);
     }
 
@@ -88,21 +97,27 @@ class master_events extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'date' => 'required|date',
+            'start_time' => 'required|date_format:H:i',
             'venue' => 'required|string|max:255',
             'organizer_id' => 'required|exists:organizers,id', // Assuming organizer id is passed
-            'booking_url' => 'required|url|max:255',
+            'booking_url' => 'required|max:255',
             'description' => 'required|string',
             'tags' => 'required|string',
         ]);
 
-        $events = new Events();
+        $bookingurl = 'https://www.' . $validatedData['booking_url'] . '.com';
+
+        // Create new organizer
+        $events = Events::findOrFail($id);
         $events->title = $validatedData['title'];
         $events->date = $validatedData['date'];
+        $events->start_time = $validatedData['start_time'];
         $events->venue = $validatedData['venue'];
         $events->organizer_id = $validatedData['organizer_id'];
-        $events->booking_url = $validatedData['booking_url'];
+        $events->booking_url = $bookingurl;
         $events->description = $validatedData['description'];
         $events->tags = $validatedData['tags'];
+        $events->event_category_id = 1;
         $events->save();
 
         return redirect()->route('master_events.index');
